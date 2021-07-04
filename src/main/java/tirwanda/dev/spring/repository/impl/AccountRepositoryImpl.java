@@ -1,5 +1,6 @@
 package tirwanda.dev.spring.repository.impl;
 
+import org.springframework.stereotype.Repository;
 import tirwanda.dev.spring.entity.Account;
 import tirwanda.dev.spring.repository.AccountRepository;
 
@@ -7,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 public class AccountRepositoryImpl implements AccountRepository {
 
     private Map<Long, Account> accountMap = new HashMap<>();

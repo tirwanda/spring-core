@@ -1,36 +1,41 @@
 package tirwanda.dev.spring.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tirwanda.dev.spring.entity.Account;
-import tirwanda.dev.spring.repository.impl.AccountRepositoryImpl;
+import tirwanda.dev.spring.repository.AccountRepository;
 import tirwanda.dev.spring.service.AccountService;
 
 import java.math.BigDecimal;
 
+@Service(value = "accountService")
 public class AccountServiceImpl implements AccountService {
-    private AccountRepositoryImpl accountRepositoryImpl;
+
+    private AccountRepository accountRepository;
 
     @Override
     public void transferMoney(Long sourceId, Long destinationId, BigDecimal balance) {
-        Account sourceAccount = accountRepositoryImpl.find(sourceId);
-        Account destinationSource = accountRepositoryImpl.find(destinationId);
+        Account sourceAccount = accountRepository.find(sourceId);
+        Account destinationSource = accountRepository.find(destinationId);
 
         sourceAccount.setBalance(sourceAccount.getBalance().subtract(balance));
         destinationSource.setBalance(destinationSource.getBalance().add(balance));
 
-        accountRepositoryImpl.update(sourceAccount);
-        accountRepositoryImpl.update(destinationSource);
+        accountRepository.update(sourceAccount);
+        accountRepository.update(destinationSource);
     }
 
     @Override
     public Account getAccount(Long id) {
-        return accountRepositoryImpl.find(id);
+        return accountRepository.find(id);
     }
 
-    public AccountRepositoryImpl getAccountRepositoryImpl() {
-        return accountRepositoryImpl;
+    public AccountRepository getAccountRepositoryImpl() {
+        return accountRepository;
     }
 
-    public void setAccountRepositoryImpl(AccountRepositoryImpl accountRepositoryImpl) {
-        this.accountRepositoryImpl = accountRepositoryImpl;
+    @Autowired
+    public void setAccountRepositoryImpl(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 }

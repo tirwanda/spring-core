@@ -1,5 +1,6 @@
 package tirwanda.dev.spring;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import tirwanda.dev.spring.service.AccountService;
 
@@ -13,7 +14,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ApplicationContext appContext = new ClassPathXmlApplicationContext("ApplicationContext.xml");
         AccountService accountService = appContext.getBean("accountService", AccountService.class);
         System.out.println("Before money transfer");
         System.out.println("Account 1 balance: " + accountService.getAccount(1L).getBalance());
