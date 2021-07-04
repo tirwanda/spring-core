@@ -1,6 +1,7 @@
 package tirwanda.dev.spring.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import tirwanda.dev.spring.entity.Account;
 import tirwanda.dev.spring.repository.AccountRepository;
@@ -35,6 +36,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Autowired
+    @Qualifier(value = "accountRepositoryImpl")
     public void setAccountRepositoryImpl(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
