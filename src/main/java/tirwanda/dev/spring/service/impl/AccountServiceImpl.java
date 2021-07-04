@@ -7,7 +7,12 @@ import tirwanda.dev.spring.service.AccountService;
 import java.math.BigDecimal;
 
 public class AccountServiceImpl implements AccountService {
+
     private AccountRepositoryImpl accountRepositoryImpl;
+
+    public AccountServiceImpl(AccountRepositoryImpl accountRepositoryImpl) {
+        this.accountRepositoryImpl = accountRepositoryImpl;
+    }
 
     @Override
     public void transferMoney(Long sourceId, Long destinationId, BigDecimal balance) {
@@ -26,11 +31,4 @@ public class AccountServiceImpl implements AccountService {
         return accountRepositoryImpl.find(id);
     }
 
-    public AccountRepositoryImpl getAccountRepositoryImpl() {
-        return accountRepositoryImpl;
-    }
-
-    public void setAccountRepositoryImpl(AccountRepositoryImpl accountRepositoryImpl) {
-        this.accountRepositoryImpl = accountRepositoryImpl;
-    }
 }

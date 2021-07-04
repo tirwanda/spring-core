@@ -9,7 +9,7 @@
     </bean>
     
     <bean id="accountService" class="tirwanda.dev.spring.service.impl.AccountServiceImpl">
-        <property name="accountRepositoryImpl" ref="accountRepository"/>
+        <constructor-arg ref="accountRepository"/>
     </bean>
 
     
